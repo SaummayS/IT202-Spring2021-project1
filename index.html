@@ -25,7 +25,7 @@
   
       function initMap(){
         map = new google.maps.Map(document.querySelector("#map"),{
-          center: {lat:-34.397 , lng:150.644},
+          center: {lat:41.8781 , lng:-87.6298},
           zoom: 8,
         })
       }
@@ -119,8 +119,28 @@
   
       cardTemp.parentElement.append(clone)
       //console.log(item)
+
+      //map markers and info windows
+
+      let marker = new google.maps.Marker({
+        position: {lat: parseFloat(item.latitude), lng: parseFloat(item.longitude) },
+        map:map
       })
-          cardTemp.remove()
+
+        const contentString = item.community_area_name + " - " + item.pin + "<br>" + item.address + " - " + item.sq_ft + "<br>" + item.zip_code;
+
+        const infowindow = new google.maps.InfoWindow({
+        content: contentString,
+        });
+
+      marker.addListener("click", () => {
+      infowindow.open(map, marker);
+    });
+
+
+
+      })
+          //cardTemp.remove()
         })
 
       })
