@@ -11,8 +11,25 @@
     <title>IT 202 Project-1</title>
 
     <style>
-      .screen{display: none;}
-    </style>
+        .screen{display: none;}
+        #map{height: 100%;}
+        html,
+        body{
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+      </style>
+      <script>
+      let map;
+  
+      function initMap(){
+        map = new google.maps.Map(document.querySelector("#map"),{
+          center: {lat:-34.397 , lng:150.644},
+          zoom: 8,
+        })
+      }
+      </script>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <!-- <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +69,11 @@
            </div>
          </div>
        </div>
-    <div class="screen" id="map">The data mapped, with markers and info windows.  The info window content should be the same as above.</div>
+       <div class="screen" id="map">The data mapped, with markers and info windows.  The info window content should be the same as above.</div>
+       <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ3JlKCAfq3IFs7n4W6jYupLPnQFneyho&callback=initMap&libraries=&v=weekly"
+        async>
+       </script>
     <div class="screen" id="about"> About this website </div>
 
     <!-- Optional JavaScript -->
