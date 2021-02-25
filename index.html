@@ -34,7 +34,15 @@
     <!-- <h1>Hello, world!</h1> -->
 
     <div class="screen" id="home"> Home page Content </div>
-    <div class="screen" id="form"> A form to allow users to filter the data </div>
+    <div class="screen" id="form"> A form to allow users to filter the data <br> 
+        <form>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Input Ward No.</label>
+        <input type="text" class="form-control" id="Input" placeholder="Example input">
+      </div>
+      </form>
+      <button type="button" class="btn btn-info" id="search">Search!</button>
+      </div>
     <div class="screen" id="data"> The data in a listing form (using cards or list items), displaying<br>community_area_name - pin<br>address - square footage pin</div>
     <div class="screen" id="map">The data mapped, with markers and info windows.  The info window content should be the same as above.</div>
     <div class="screen" id="about"> About this website </div>
@@ -46,6 +54,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 
     <script>
+      
+      document.querySelector("#home").style.display = "block";
 
       document.querySelectorAll("div#nav a").forEach((anchor) => {
           anchor.addEventListener("click", (event) => {
@@ -57,6 +67,17 @@
               targetScreen.style.display = "block";
           })
     })
+
+    let endpoint = "https://data.cityofchicago.org/resource/aksk-kvfp.json"
+      document.querySelector("#search").addEventListener("click",(e)=>{
+
+      let toSearch = document.querySelector("#Input").value;
+      let url = endpoint + "?ward=" + toSearch
+      fetch(url)
+        .then((response) => { return response.json() })
+        .then((data) => {console.log(data)})
+
+      })
 
 
     </script>
